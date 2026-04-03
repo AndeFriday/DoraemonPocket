@@ -13,6 +13,18 @@
             "hash": "9daaa73e34f609420dbdde38c61671003b2b6750246e41e14350a0fa2d2231ad"
         }
     },
+    "pre_install": [
+        "Write-Host 'Bypassing 403 Forbidden: Downloading actual ZIP manually...' -ForegroundColor Cyan",
+        "$arch = if ($architecture -eq '64bit') { 'x64' } else { 'win32' }",
+        "$RealUrl = \"https://www.microdicom.com/downloads/Software/microdicom-$version-$arch.zip\"",
+        "$ZipPath = \"$dir\\microdicom.zip\"",
+        "$UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'",
+        "Invoke-WebRequest -Uri $RealUrl -OutFile $ZipPath -UserAgent $UserAgent -Headers @{ Referer = 'https://www.microdicom.com/' }",
+        "Write-Host 'Extracting...' -ForegroundColor Cyan",
+        "Expand-Archive -Path $ZipPath -DestinationPath $dir -Force",
+        "Remove-Item $ZipPath -Force",
+        "Remove-Item \"$dir\\README.md\" -Force"
+    ],
     "shortcuts": [
         [
             "mDicom.exe",
