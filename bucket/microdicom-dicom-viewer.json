@@ -14,16 +14,22 @@
         }
     },
     "pre_install": [
-        "Write-Host 'Bypassing 403 Forbidden: Downloading actual ZIP manually...' -ForegroundColor Cyan",
+        "Write-Host 'Bypassing 403 Forbidden using native curl.exe...' -ForegroundColor Cyan",
         "$arch = if ($architecture -eq '64bit') { 'x64' } else { 'win32' }",
         "$RealUrl = \"https://www.microdicom.com/downloads/Software/microdicom-$version-$arch.zip\"",
-        "$ZipPath = \"$dir\\microdicom.zip\"",
-        "$UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'",
-        "Invoke-WebRequest -Uri $RealUrl -OutFile $ZipPath -UserAgent $UserAgent -Headers @{ Referer = 'https://www.microdicom.com/' }",
-        "Write-Host 'Extracting...' -ForegroundColor Cyan",
-        "Expand-Archive -Path $ZipPath -DestinationPath $dir -Force",
-        "Remove-Item $ZipPath -Force",
-        "Remove-Item \"$dir\\README.md\" -Force"
+        "$ZipFile = \"$dir\\microdicom_real.zip\"",
+        "curl.exe -L -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.9' -e 'https://www.microdicom.com/downloads.html' -o \"$ZipFile\" \"$RealUrl\"",
+        "if (Test-Path \"$ZipFile\") {",
+        "    $size = (Get-Item \"$ZipFile\").Length",
+        "    if ($size -lt 500000) {",
+        "        Write-Host 'ERROR: The downloaded file is too small! The server (e.g., Cloudflare) is still blocking the script.' -ForegroundColor Red",
+        "    } else {",
+        "        Write-Host 'Download successful! Extracting...' -ForegroundColor Cyan",
+        "        Expand-Archive -Path \"$ZipFile\" -DestinationPath \"$dir\" -Force",
+        "    }",
+        "    Remove-Item \"$ZipFile\" -Force",
+        "}",
+        "Remove-Item \"$dir\\favicon.ico\" -Force -ErrorAction SilentlyContinue"
     ],
     "shortcuts": [
         [
