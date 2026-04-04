@@ -7,7 +7,7 @@
         "url": "https://www.kookapp.cn/protocol.html"
     },
     "url": "https://img.kookapp.cn/assets/release/html_pc/kook_2576/Kook_PC_Setup_v0.104.0.0_b2ZmaWNpYWwuc2l0ZS4uLi5wYw==.exe#/dl.7z",
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "hash": "E479EA855BC04131DA899D2481E14748256F367444475CE37D44749E0943579D",
     "extract_to": "tmp",
     "pre_install": [
         "Expand-7zipArchive \"$dir\\tmp\\`$1\\SquirrelTemp\\app.7z\" \"$dir\"",
