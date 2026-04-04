@@ -6,16 +6,12 @@
         "identifier": "Proprietary",
         "url": "https://www.kookapp.cn/protocol.html"
     },
-    "url": "https://www.kookapp.cn/favicon.ico",
-    "hash": "4dae5c17ba641b6856f346f401bce38c412947076637340d4538c6d98b9d44d0",
+    "url": "https://img.kookapp.cn/assets/release/html_pc/kook_2576/Kook_PC_Setup_v0.104.0.0_b2ZmaWNpYWwuc2l0ZS4uLi5wYw==.exe#/dl.7z",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "extract_to": "tmp",
     "pre_install": [
-        "$ReleaseUrl = (Invoke-RestMethod \"https://www.kookapp.cn/api/v2/updates/latest-version?platform=windows\").url",
-        "Write-Host '[KOOK] Downloading installer...'",
-        "Invoke-WebRequest -Uri $ReleaseUrl -OutFile \"$dir\\Kook_Setup.exe\"",
-        "Expand-7zipArchive \"$dir\\Kook_Setup.exe\" \"$dir\\tmp\"",
         "Expand-7zipArchive \"$dir\\tmp\\`$1\\SquirrelTemp\\app.7z\" \"$dir\"",
-        "Expand-Archive \"$dir\\KOOK-$version-full.nupkg\" \"$dir\"",
-        "Remove-Item \"$dir\\Kook_Setup.exe\", \"$dir\\KOOK-$version-full.nupkg\", \"$dir\\favicon.ico\" -ErrorAction SilentlyContinue"
+        "Expand-Archive \"$dir\\KOOK-$version-full.nupkg\" \"$dir\""
     ],
     "post_install": [
         "Remove-Item \"$dir\\tmp\" -ErrorAction SilentlyContinue -Recurse -Force",
@@ -36,6 +32,9 @@
     "checkver": {
         "url": "https://www.kookapp.cn/api/v2/updates/latest-version?platform=windows",
         "jsonpath": "$.url",
-        "regex": "v([\\d.]+)\\.\\d.*?\\.exe"
+        "regex": "(?<path>assets/release/.*?v([\\d.]+)\\.\\d.*?\\.exe)"
+    },
+    "autoupdate": {
+        "url": "https://img.kookapp.cn/$matchPath#/dl.7z"
     }
 }
