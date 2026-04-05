@@ -21,4 +21,4 @@
         "url": "https://github.com/huiyadanli/RevokeMsgPatcher/releases/download/$version/RevokeMsgPatcher.v$version.zip",
         "extract_dir": "RevokeMsgPatcher.v$version"
     }
-}
+}

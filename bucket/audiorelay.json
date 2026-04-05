@@ -1,6 +1,6 @@
 {
     "version": "0.27.5",
-    "description": " AudioRelay : Stream audio between your devices",
+    "description": "AudioRelay : Stream audio between your devices",
     "homepage": "https://audiorelay.net",
     "license": "Unknown",
     "url": "https://dl.audiorelay.net/setups/windows/audiorelay-0.27.5.exe",
@@ -36,4 +36,4 @@
     "autoupdate": {
         "url": "https://dl.audiorelay.net/setups/windows/audiorelay-$version.exe"
     }
-}
+}
