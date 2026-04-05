@@ -1,0 +1,43 @@
+{
+    "homepage": "https://uuyc.163.com/",
+    "description": "Remote Control created by Netease Inc.",
+    "version": "4.19.0",
+    "license": {
+        "identifier": "EULA",
+        "url": "https://uuyc.163.com/contact/20240402/40294_1146065.html"
+    },
+    "url": "https://a56.gdl.netease.com/UURemote_Setup_4.19.0.7454_0403185030_gwqd.exe?&n=uuyc_4.19.0.exe#/dl.7z",
+    "hash": "368ED75E4448448D5B39E6AE34905E1876C2194B19D86F34B89ADC36DE45921D",
+    "installer": {
+        "script": [
+            "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+            "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\Netease\\UU\"",
+            "Remove-Module -Name AppsUtils"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+            "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\Netease\\UU\"",
+            "Remove-Module -Name AppsUtils"
+        ]
+    },
+    "shortcuts": [
+        [
+            "uu_launcher.exe",
+            "网易UU远程"
+        ]
+    ],
+    "checkver": {
+        "script": [
+            "$url = 'https://adl.netease.com/d/g/uu/c/gw?type=pc'",
+            "$response = Invoke-WebRequest -Uri $url -UseBasicParsing",
+            "Write-Output $response.Content"
+        ],
+        "regex": "pc_link = \"https://.*?.gdl.netease.com/(?<build>\\d+)/UU-(?<ver>[\\d.]+).exe",
+        "replace": "${ver}.${build}"
+    },
+    "autoupdate": {
+        "url": "https://uu.gdl.netease.com/$matchBuild/UU-$matchVer.exe#/dl.7z"
+    }
+}
