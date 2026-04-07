@@ -1,12 +1,12 @@
 {
-    "version": "0.7.7",
+    "version": "0.7.8",
     "description": "个人 AI 工具箱 - 一站式管理 AI 编程助手配置。AI Toolbox 是一个跨平台桌面应用，旨在帮助开发者高效管理各类 AI 编程助手的配置。",
     "homepage": "https://github.com/coulsontl/ai-toolbox",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/coulsontl/ai-toolbox/releases/download/v0.7.7/AI.Toolbox_0.7.7_x64-setup.exe#/dl.7z",
-            "hash": "0a0582c8b66cffa32014a4d7ff35c0e56c17b94ef3d71cea0200950afd072f26",
+            "url": "https://github.com/coulsontl/ai-toolbox/releases/download/v0.7.8/AI.Toolbox_0.7.8_x64-setup.exe#/dl.7z",
+            "hash": "7e0406fc1a8af1f0e4468bc31c83be42c87542874d3634ba5a42312e5fc107ad",
             "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
         }
     },
