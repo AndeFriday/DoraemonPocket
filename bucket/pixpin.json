@@ -1,0 +1,34 @@
+{
+    "version": "3.1.4.0",
+    "description": "Powerful screen capture and pinning tool with OCR and long screenshot support.",
+    "homepage": "https://pixpin.com/",
+    "license": "Proprietary",
+    "suggest": {
+        "vcredist": "extras/vcredist2022"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://download.pixpinapp.com/PixPin_intl_en-us_3.1.4.0.zip",
+            "hash": "8ee56f2862794ca9ba5a235d924e5f465989ceaafc011c44aee8fd08adc5a978",
+            "extract_dir": "PixPin"
+        }
+    },
+    "bin": "PixPin.exe",
+    "shortcuts": [
+        [
+            "PixPin.exe",
+            "PixPin"
+        ]
+    ],
+    "checkver": {
+        "url": "https://pixpin.com/",
+        "regex": "PixPin_intl_en-us_([\\d.]+).zip"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download.pixpinapp.com/PixPin_intl_en-us_$version.zip"
+            }
+        }
+    }
+}
