@@ -1,12 +1,12 @@
 {
-    "version": "2.9.8",
+    "version": "2.9.9",
     "description": "去中心化组网工具",
     "homepage": "https://github.com/ldoubil/astral",
     "license": "Unknown",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ldoubil/astral/releases/download/v2.9.8/astral-windows-x64-setup.exe",
-            "hash": "d7f2bb60cf9a1d23525f4a6e82351bf72c133a469fdc59c493a3ff9b1808653c"
+            "url": "https://github.com/ldoubil/astral/releases/download/v2.9.9/astral-windows-x64-setup.exe",
+            "hash": "2fb30b991ab3a33a4fdae8564717de61c5fb8b84192d2154fcd9225cfaa2adef"
         }
     },
     "innosetup": true,
